@@ -1,35 +1,32 @@
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center mb-4">
     <div class="col-12 col-sm-6 col-xl-4">
         <img src="../../../assets/logo.png" class="card-img-top" style="object-fit: none" alt="trui logo">
-        <div class="card shadow-sm bg-white border border-primary p-4" style="border-radius: 5%; border: none;">
-            <div class="card-body d-flex flex-column justify-content-center border border-danger">
-                
-                <!-- <div class="header"> -->
-                    
-                <!-- </div> -->
-                <!-- <div class="row"> -->
+        <div class="card shadow-lg bg-white" style="border-radius: 25px; border: none;">
+            <div class="card-body d-flex flex-column justify-content-center">
                 <div>
                     <div class="text-center mb-4">
-                        <h1>Wypełnij formularz</h1>
-                        <h2>Skontaktujemy się z Tobą najszybciej jak to będzie możliwe</h2>
+                        <h1 class="mt-4 mb-2">Wypełnij formularz</h1>
+                        <h2 class="mb-4">Skontaktujemy się z Tobą najszybciej jak to będzie możliwe</h2>
                     </div>
-                    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                    <form  [formGroup]="contactForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
                             <input 
                                 id="name" 
                                 type="text" 
                                 class="form-control bg-gray" 
                                 [ngClass]="{'is-invalid': submitted && frm.name.errors}"
-                                formControlName="name">
+                                formControlName="name"
+                                placeholder="np. Apple">
                             <label class="form-control-label" for="name">Nazwa firmy / Imię i nazwisko<span class="orange">*</span></label>
                         </div>
                         <div class="form-group">
                             <input 
                                 id="nip" 
                                 type="text" 
-                                class="form-control" 
+                                class="form-control shadow-sm" 
                                 [ngClass]="{'is-invalid': submitted && frm.nip.errors}"
-                                formControlName="nip">
+                                formControlName="nip"
+                                placeholder="123-45-67-890">
                             <label class="form-control-label" for="nip"><small>Numer NIP<span class="orange">*</span></small></label>
                         </div>
                         <div class="form-group">
@@ -47,28 +44,17 @@
                                 type="text"  
                                 class="form-control input-gradient" 
                                 [ngClass]="{'is-invalid': submitted && frm.phone.errors}"
-                                formControlName="phone">
+                                formControlName="phone"
+                                placeholder="123 456 789">
                             <label class="form-control-label" for="phone"><small>Numer telefonu:</small></label>
                         </div>
-                        <!-- <div class="form-group">
-                            <input 
-                                id="messageSubject" 
-                                type="text" 
-                                class="form-control bg-gray" 
-                                [ngClass]="{'is-invalid': submitted && frm.messageSubject.errors}"
-                                formControlName="messageSubject">
-                            <label class="form-control-label" for="messageSubject"><small>Temat<span class="orange">*</span></small></label>
-                        </div> -->
                         <div class="form-group">
-                        <select class="custom-select form-control bg-gray" (change)="changeCity($event)" formControlName="messageSubject">
-                            <option value="">Współpraca</option>
-                            <option *ngFor="let subject of Subjects" [ngValue]="subject">{{subject}}</option>
-                         </select>
-                         <label class="form-control-label" for="messageSubject"><small>Temat<span class="orange">*</span></small></label>
+                            <select class="custom-select form-control bg-gray"  formControlName="messageSubject">
+                                <option value="">Wybierz temat wiadomości</option>
+                                <option *ngFor="let subject of Subjects" [ngValue]="subject">{{subject}}</option>
+                            </select>
+                            <label class="form-control-label" for="messageSubject"><small>Temat<span class="orange">*</span></small></label>
                         </div>
-
-
-
                         <div class="form-group">
                             <div class="col-12 ">
                                 <div id="drivingLicense" class="row gx-0 bg-gray drivingLicense">
@@ -80,10 +66,9 @@
                                             <input 
                                                 name="drivingLicense"  
                                                 id="drivingLicenseYes" 
-                                                value="yes" 
+                                                [value]=true 
                                                 class="" 
-                                                [checked]="this.frm.drivingLicenseYes.value"
-                                                [ngClass]="{'mutted-radio': !this.frm.drivingLicenseYes.value}"
+                                                formControlName="drivingLicense"
                                                 type="radio" /><small >Tak</small>
                                             <span class="checkmark"></span>
                                         </label>
@@ -93,9 +78,9 @@
                                             <input 
                                             name="drivingLicense" 
                                             id="drivingLicenseNo" 
-                                            value="no" 
+                                            [value]=false
                                             class="" 
-                                            [checked]="this.frm.drivingLicenseNo.value"
+                                            formControlName="drivingLicense"
                                             type="radio" /><small>Nie</small>
                                             <span class="checkmark"></span>
                                         </label>
@@ -104,48 +89,46 @@
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <textarea  type="text" class="form-control" rows="3" id="message" name="message"></textarea> 
+                            <textarea 
+                                formControlName="message" 
+                                type="text" 
+                                class="form-control" 
+                                rows="3" 
+                                id="message" 
+                                name="message"
+                                placeholder="Dzień dobry,"></textarea> 
                             <label class="form-control-label" for="message"><small>Treść wiadomości:</small></label>
                         </div>
-
-                        <!-- <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="selectAll" (click)="selectAll()">
-                            <label class="form-check-label" for="selectAll">
-                              Zaznacz wszystkie zgody
-                            </label>
-                        </div> -->
-                        <label class="checkbox-container" for="selectAll">Zaznacz wszystkie zgody
-                            <input type="checkbox" id="selectAll" (click)="selectAll()" >
+                        <label class="checkbox-container" for="selectAll"><b>Zaznacz wszystkie zgody</b>
+                            <input 
+                                type="checkbox" 
+                                id="selectAll" 
+                                (click)="selectAll()" >
                             <span class="checkbox-checkmark"></span>
                         </label>
-                        <!-- <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="marketingContact" [checked]="this.frm.marketingContact.value">
-                            <label class="form-check-label" for="marketingContact">
-                              Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu kontaktowym.<span class="orange">*</span>
-                            </label>
-                        </div> -->
-                        <label class="checkbox-container" for="marketingContact"> Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu kontaktowym.<span class="orange">*</span>
-                            <input type="checkbox" id="marketingContact" [checked]="this.frm.marketingContact.value" >
+                        <label class="checkbox-container text-muted" for="marketingContact"> Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu kontaktowym.<span class="orange">*</span>
+                            <input 
+                                type="checkbox" 
+                                id="marketingContact" 
+                                [value]=true
+                                formControlName="marketingContact">
                             <span class="checkbox-checkmark"></span>
                         </label>
-                        <!-- <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" value="" id="telephoneContact" [checked]="this.frm.telephoneContact.value">
-                            <label class="form-check-label" for="telephoneContact">
-                              Wyrażam zgodę na kontakt telefoniczny w sprawach marketingowych.
-                            </label>
-                        </div> -->
-                        <label class="checkbox-container mb-4" for="telephoneContact"> Wyrażam zgodę na kontakt telefoniczny w sprawach marketingowych.
-                            <input type="checkbox" id="telephoneContact" [checked]="this.frm.telephoneContact.value" >
+                        <label class="checkbox-container mb-4 text-muted" for="telephoneContact"> Wyrażam zgodę na kontakt telefoniczny w sprawach marketingowych.
+                            <input 
+                                type="checkbox" 
+                                id="telephoneContact" 
+                                [value]= false
+                                formControlName="telephoneContact">
                             <span class="checkbox-checkmark"></span>
                         </label>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="submit-btn"><b>Wyślij wiadomość</b></button> 
                         </div>
-                      </form>
-                    </div>
-                <!-- </div> -->
+                    </form>
+                </div>
             </div>
-          </div>
+        </div>
     </div>
 </div>
 

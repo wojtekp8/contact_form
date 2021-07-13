@@ -15,8 +15,7 @@ export class ContactFormComponent implements OnInit {
   }
 
   get frm() { return this.contactForm.controls; }
-
-  Subjects: any = ['Temat wiadomości', 'Kolejny temat', 'I jeszcze jeden! :)']
+  Subjects: any = ['Współpraca', 'Następny temat', 'Kolejny...']
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
@@ -25,38 +24,33 @@ export class ContactFormComponent implements OnInit {
       email: ['', Validators.required],
       phone: [''],
       messageSubject: ['', Validators.required],
-      drivingLicense: [''],
+      drivingLicense: [false],
       message: [''],
-      drivingLicenseYes: [false],
-      drivingLicenseNo: [true],
-      marketingContact: [false, Validators.required],
-      telephoneContact: [false]
+      marketingContact: [, Validators.required],
+      telephoneContact: []
     });
   }
 
-  changeCity(e:any) {
-    console.log(e.value)
-    this.frm.messageSubject.setValue(e.target.value, {
-      onlySelf: true
-    })
-  }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
+    if (!this.contactForm.valid || !this.frm.marketingContact.value) {
+      return;
+    } else {
       console.log('Nazwa Firmy / Imię i nazwisko: ', this.frm.name.value);
       console.log('Numer NIP: ', this.frm.nip.value);
       console.log('E-mail: ', this.frm.email.value);
       console.log('Numer telefonu: ', this.frm.phone.value);
-      console.log('Temat: ', this.frm.topic.value);
+      console.log('Temat: ', this.frm.messageSubject.value);
       console.log('Prawo jazdy kat. B: ', this.frm.drivingLicense.value);
       console.log('Treść wiadomości: ', this.frm.message.value);
+      console.log('Zgoda na przetwarzanie danych osobowych: ', this.frm.marketingContact.value);
+      console.log('Zgoda na kontakt telefoniczny: ', this.frm.telephoneContact.value);
+    } 
   }
 
-  selectAll(){
-    console.log('selectAll?');
+  selectAll(): void {
     this.frm.marketingContact.setValue(!this.frm.marketingContact.value);
     this.frm.telephoneContact.setValue(!this.frm.telephoneContact.value);
-    // this.frm.marketingContact.patchValue(true);
-    // this.frm.telephoneContact.patchValue(true);
   }
 }
