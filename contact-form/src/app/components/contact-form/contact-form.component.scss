@@ -1,97 +1,101 @@
+$accent-color: #fb6603;
+
+
 .form-group {
-    position: relative;
-    min-height: 85px;
-  }
+  position: relative;
+  min-height: 85px;
+}
   
-  input.form-control {
-    height: 73px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: none;
-  }
+input.form-control {
+  height: 73px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+}
   
-  label.form-control-label {
-    position: absolute;
-    font-size: 12px;
-    font-weight: 700;
-    top: 10px;
-    left: 10px;
-  }
+label.form-control-label {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 700;
+  top: 10px;
+  left: 10px;
+}
 
 .submit-btn{
-    width:241px;
-    height: 60px;
-    border-radius: 30px;
-    border: 0px;
-    background-color: #40DE4E;
-    color: #ffffff;
+  width:241px;
+  height: 60px;
+  border-radius: 30px;
+  border: 0px;
+  background-color: #40DE4E;
+  color: #ffffff;
 }
 
 .form-control:focus {
-    border: 3px solid #fb6603;
-    // border-color: #fb6603;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 1px rgba(255, 0, 0, 0.6);
-  }
+  border: 3px solid$accent-color;
+  // border-color: #fb6603;
+  box-shadow: inset 0 1px 1px $accent-color, 0 0 1px $accent-color;
+}
 
 .header{
-    background-image: src("../../../assets/logo.png");
-    // background-color: red;
-    width:200px;
-    height: 200px;
+  background-image: src("../../../assets/logo.png");
+  // background-color: red;
+  width:200px;
+  height: 200px;
 }
 
 input{
-    border-radius: 10px;
+  border-radius: 10px;
     
    
 }
 .bg-gray{
-    background-color: #f9f9f9;
-    // background-color: #8b2929;
+  background-color: #f9f9f9;
+  // background-color: #8b2929;
 }
 .input-gradient{
-    background: rgb(249,249,249);
-    background: linear-gradient(0deg, rgba(249,249,249,1) 0%, rgba(233,233,233,1) 100%);
+  background: rgb(249,249,249);
+  background: linear-gradient(0deg, rgba(249,249,249,1) 0%, rgba(233,233,233,1) 100%);
 }
 
 .orange{
-    color:#fb6603;
+  color: $accent-color;
 }
 textarea{
-    height: 150px;
-    border-radius: 10px;
-    text-decoration: none;
-    background-color: #f9f9f9;
-    border: none;
-    resize: none;
-    outline: none;
+  padding-top:20px;
+  height: 150px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: #f9f9f9;
+  border: none;
+  resize: none;
+  outline: none;
 }
 
 .drivingLicense{
-    padding: 10px 0 0 10px;
-    background-color: #f9f9f9;
-    width:100%;
-    height: 73px;
-    font-size: 12px;
-    font-weight: 700;
-    border-radius: 10px;
-    // position: absolute;
+  padding: 10px 0 0 10px;
+  background-color: #f9f9f9;
+  width:100%;
+  height: 73px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 10px;
+  // position: absolute;
 //     top: 10px;
 // left: 10px;
 }
 
 h1{
-    font-size: 26px;
-    font-weight: 700;
+  font-size: 26px;
+  font-weight: 700;
 }
 
 h2{
-    font-size: 18px;
-    color:#b3b3b4;
+  font-size: 18px;
+  color:#b3b3b4;
 }
 .radio-container{
-    display: block;
+  display: block;
   position: relative;
   margin-bottom: 12px;
   cursor: pointer;
@@ -104,46 +108,127 @@ h2{
 
 /* Hide the browser's default radio button */
 .radio-container input{
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
 
   /* Create a custom radio button */
-  .checkmark {
-    position: absolute;
-    top: -2px;
-    left: -30px;
-    height: 24px;
-    width: 24px;
-    border: 3px solid #fb6603;;
-    background-color: none;
-    border-radius: 50%;
-  }
+.checkmark {
+  position: absolute;
+  top: -2px;
+  left: -30px;
+  height: 24px;
+  width: 24px;
+  border: 3px solid $accent-color;
+  background-color: none;
+  border-radius: 50%;
+}
 
 /* On mouse-over, add a grey background color */
 //   .radio-container:hover input ~ .checkmark {
 //     background-color: #ccc;
 //   }
 
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
     
-  .radio-container input:checked ~ .checkmark:after {
-    display: block;
-  }
+.radio-container input:checked ~ .checkmark:after {
+  display: block;
+}
 
-  .radio-container .checkmark:after {
-    top: 5px;
-    left: 5px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #fb6603;
-  }
-  .mutted-radio{
+.radio-container .checkmark:after {
+  top: 5px;
+  left: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $accent-color;
+}
+.mutted-radio{
 
-  }
+}
+
+
+// CHECKBOX STYLES
+/* The container */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox-checkmark {
+  position: absolute;
+  top: -7px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border: 3px solid $accent-color;
+  border-radius: 8px;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkbox-checkmark {
+  background-color: none;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkbox-checkmark {
+  background-color: none;
+  color: $accent-color;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkbox-checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkbox-checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid $accent-color;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.custom-select {
+  border: none;
+  height: 73px;
+  padding-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}

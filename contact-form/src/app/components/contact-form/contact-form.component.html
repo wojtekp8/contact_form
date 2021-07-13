@@ -1,5 +1,5 @@
 <div class="row d-flex justify-content-center">
-    <div class="col-4">
+    <div class="col-12 col-sm-6 col-xl-4">
         <img src="../../../assets/logo.png" class="card-img-top" style="object-fit: none" alt="trui logo">
         <div class="card shadow-sm bg-white border border-primary p-4" style="border-radius: 5%; border: none;">
             <div class="card-body d-flex flex-column justify-content-center border border-danger">
@@ -50,22 +50,32 @@
                                 formControlName="phone">
                             <label class="form-control-label" for="phone"><small>Numer telefonu:</small></label>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <input 
-                                id="topic" 
+                                id="messageSubject" 
                                 type="text" 
                                 class="form-control bg-gray" 
-                                [ngClass]="{'is-invalid': submitted && frm.topic.errors}"
-                                formControlName="topic">
-                            <label class="form-control-label" for="topic"><small>Temat<span class="orange">*</span></small></label>
+                                [ngClass]="{'is-invalid': submitted && frm.messageSubject.errors}"
+                                formControlName="messageSubject">
+                            <label class="form-control-label" for="messageSubject"><small>Temat<span class="orange">*</span></small></label>
+                        </div> -->
+                        <div class="form-group">
+                        <select class="custom-select form-control bg-gray" (change)="changeCity($event)" formControlName="messageSubject">
+                            <option value="">Współpraca</option>
+                            <option *ngFor="let subject of Subjects" [ngValue]="subject">{{subject}}</option>
+                         </select>
+                         <label class="form-control-label" for="messageSubject"><small>Temat<span class="orange">*</span></small></label>
                         </div>
+
+
+
                         <div class="form-group">
                             <div class="col-12 ">
                                 <div id="drivingLicense" class="row gx-0 bg-gray drivingLicense">
                                     <div class="col-8">
                                         <small><label  for="drivingLicense">Czy posiadasz prawo jazdy kat. B?</label></small>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-5 offset-2 offset-xl-0 col-xl-2">
                                         <label class="radio-inline radio-container">
                                             <input 
                                                 name="drivingLicense"  
@@ -78,7 +88,7 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-5 col-xl-2">
                                         <label class="radio-inline radio-container">
                                             <input 
                                             name="drivingLicense" 
@@ -98,24 +108,36 @@
                             <label class="form-control-label" for="message"><small>Treść wiadomości:</small></label>
                         </div>
 
-                        <div class="form-check">
+                        <!-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="selectAll" (click)="selectAll()">
                             <label class="form-check-label" for="selectAll">
                               Zaznacz wszystkie zgody
                             </label>
-                        </div>
-                        <div class="form-check">
+                        </div> -->
+                        <label class="checkbox-container" for="selectAll">Zaznacz wszystkie zgody
+                            <input type="checkbox" id="selectAll" (click)="selectAll()" >
+                            <span class="checkbox-checkmark"></span>
+                        </label>
+                        <!-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="marketingContact" [checked]="this.frm.marketingContact.value">
                             <label class="form-check-label" for="marketingContact">
                               Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu kontaktowym.<span class="orange">*</span>
                             </label>
-                        </div>
-                        <div class="form-check mb-4">
+                        </div> -->
+                        <label class="checkbox-container" for="marketingContact"> Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu kontaktowym.<span class="orange">*</span>
+                            <input type="checkbox" id="marketingContact" [checked]="this.frm.marketingContact.value" >
+                            <span class="checkbox-checkmark"></span>
+                        </label>
+                        <!-- <div class="form-check mb-4">
                             <input class="form-check-input" type="checkbox" value="" id="telephoneContact" [checked]="this.frm.telephoneContact.value">
                             <label class="form-check-label" for="telephoneContact">
                               Wyrażam zgodę na kontakt telefoniczny w sprawach marketingowych.
                             </label>
-                        </div>
+                        </div> -->
+                        <label class="checkbox-container mb-4" for="telephoneContact"> Wyrażam zgodę na kontakt telefoniczny w sprawach marketingowych.
+                            <input type="checkbox" id="telephoneContact" [checked]="this.frm.telephoneContact.value" >
+                            <span class="checkbox-checkmark"></span>
+                        </label>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="submit-btn"><b>Wyślij wiadomość</b></button> 
                         </div>

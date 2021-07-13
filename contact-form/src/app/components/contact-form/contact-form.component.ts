@@ -16,13 +16,15 @@ export class ContactFormComponent implements OnInit {
 
   get frm() { return this.contactForm.controls; }
 
+  Subjects: any = ['Temat wiadomości', 'Kolejny temat', 'I jeszcze jeden! :)']
+
   ngOnInit(): void {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       nip: ['', Validators.required],
       email: ['', Validators.required],
       phone: [''],
-      topic: ['', Validators.required],
+      messageSubject: ['', Validators.required],
       drivingLicense: [''],
       message: [''],
       drivingLicenseYes: [false],
@@ -32,15 +34,22 @@ export class ContactFormComponent implements OnInit {
     });
   }
 
+  changeCity(e:any) {
+    console.log(e.value)
+    this.frm.messageSubject.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+
   onSubmit(){
     this.submitted = true;
-    console.log('Nazwa Firmy / Imię i nazwisko: ', this.frm.name.value);
-    console.log('Numer NIP: ', this.frm.nip.value);
-    console.log('E-mail: ', this.frm.email.value);
-    console.log('Numer telefonu: ', this.frm.phone.value);
-    console.log('Temat: ', this.frm.topic.value);
-    console.log('Prawo jazdy kat. B: ', this.frm.drivingLicense.value);
-    console.log('Treść wiadomości: ', this.frm.message.value);
+      console.log('Nazwa Firmy / Imię i nazwisko: ', this.frm.name.value);
+      console.log('Numer NIP: ', this.frm.nip.value);
+      console.log('E-mail: ', this.frm.email.value);
+      console.log('Numer telefonu: ', this.frm.phone.value);
+      console.log('Temat: ', this.frm.topic.value);
+      console.log('Prawo jazdy kat. B: ', this.frm.drivingLicense.value);
+      console.log('Treść wiadomości: ', this.frm.message.value);
   }
 
   selectAll(){
