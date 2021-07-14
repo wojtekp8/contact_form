@@ -1,23 +1,28 @@
 <div class="row d-flex justify-content-center mb-4">
     <div class="col-12 col-sm-6 col-xl-4">
         <img src="../../../assets/logo.png" class="card-img-top" style="object-fit: none" alt="trui logo">
-        <div class="card shadow-lg bg-white" style="border-radius: 25px; border: none;">
+        <div class="card shadow-lg bg-white">
             <div class="card-body d-flex flex-column justify-content-center">
                 <div>
-                    <div class="text-center mb-4">
-                        <h1 class="mt-4 mb-2">Wypełnij formularz</h1>
-                        <h2 class="mb-4">Skontaktujemy się z Tobą najszybciej jak to będzie możliwe</h2>
+                    <div class="text-center pt-4">
+                        <h1>Wypełnij formularz</h1>
+                        <h2>Skontaktujemy się z Tobą najszybciej jak to będzie możliwe</h2>
                     </div>
-                    <form  [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                    <form  [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="pt-4">
                         <div class="form-group">
                             <input 
                                 id="name" 
                                 type="text" 
-                                class="form-control bg-gray" 
+                                class="form-control bg-gray mb-0 pb-0" 
                                 [ngClass]="{'is-invalid': submitted && frm.name.errors}"
                                 formControlName="name"
                                 placeholder="np. Apple">
-                            <label class="form-control-label" for="name">Nazwa firmy / Imię i nazwisko<span class="orange">*</span></label>
+                            <label class="form-control-label" for="name">Nazwa firmy / Imię i nazwisko<span class="text-orange">*</span></label>
+                        </div>
+                        <div class="text-end mr-2">
+                            <small class="text-danger " style *ngIf="submitted && frm.name.errors?.required">
+                                Pole "Nazwa firmy / Imię i nazwisko" jest wymagane!
+                            </small>
                         </div>
                         <div class="form-group">
                             <input 
@@ -27,7 +32,15 @@
                                 [ngClass]="{'is-invalid': submitted && frm.nip.errors}"
                                 formControlName="nip"
                                 placeholder="123-45-67-890">
-                            <label class="form-control-label" for="nip"><small>Numer NIP<span class="orange">*</span></small></label>
+                            <label class="form-control-label" for="nip"><small>Numer NIP<span class="text-orange">*</span></small></label>
+                        </div>
+                        <div class="text-end mr-2">
+                            <small class="text-danger " style *ngIf="submitted && frm.nip.errors?.required">
+                                Pole "Numer NIP" jest wymagane!
+                            </small>
+                            <small class="text-danger " style *ngIf="submitted && frm.nip.errors?.wrongNipNumber">
+                                Podano niepoprawny numer NIP!
+                            </small>
                         </div>
                         <div class="form-group">
                             <input 
@@ -36,7 +49,15 @@
                                 class="form-control shadow-sm" 
                                 [ngClass]="{'is-invalid': submitted && frm.email.errors}"
                                 formControlName="email">
-                            <label class="form-control-label" for="email"><small>E-mail<span class="orange">*</span></small></label>
+                            <label class="form-control-label" for="email"><small>E-mail<span class="text-orange">*</span></small></label>
+                        </div>
+                        <div class="text-end mr-2">
+                            <small class="text-danger " style *ngIf="submitted && frm.email.errors?.required">
+                                Pole "E-mail" jest wymagane!
+                            </small>
+                            <small class="text-danger " style *ngIf="submitted && frm.email.errors?.email">
+                                Niewłaściwy format adresu e-mail!
+                            </small>
                         </div>
                         <div class="form-group">
                             <input
@@ -48,12 +69,22 @@
                                 placeholder="123 456 789">
                             <label class="form-control-label" for="phone"><small>Numer telefonu:</small></label>
                         </div>
+                        <div class="text-end mr-2">
+                            <small class="text-danger " style *ngIf="submitted && frm.phone.errors?.pattern">
+                                Niewłaściwy format numeru telefonu!
+                            </small>
+                        </div>
                         <div class="form-group">
-                            <select class="custom-select form-control bg-gray"  formControlName="messageSubject">
-                                <option value="">Wybierz temat wiadomości</option>
-                                <option *ngFor="let subject of Subjects" [ngValue]="subject">{{subject}}</option>
-                            </select>
-                            <label class="form-control-label" for="messageSubject"><small>Temat<span class="orange">*</span></small></label>
+                                <select class="custom-select form-control bg-gray" formControlName="messageSubject">
+                                    <option value="">Wybierz temat wiadomości</option>
+                                    <option *ngFor="let subject of Subjects" [ngValue]="subject">{{subject}}</option>
+                                </select>
+                                <label class="form-control-label" for="messageSubject"><small>Temat<span class="text-orange">*</span></small></label>
+                        </div>
+                        <div class="text-end mr-2">
+                            <small class="text-danger " style *ngIf="submitted && frm.messageSubject.errors?.required">
+                                Pole "Temat" jest wymagane!
+                            </small>
                         </div>
                         <div class="form-group">
                             <div class="col-12 ">
@@ -106,7 +137,8 @@
                                 (click)="selectAll()" >
                             <span class="checkbox-checkmark"></span>
                         </label>
-                        <label class="checkbox-container text-muted" for="marketingContact"> Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu kontaktowym.<span class="orange">*</span>
+                        <label class="checkbox-container text-muted" [ngClass]="{'is-invalid': submitted && frm.marketingContact.errors}" for="marketingContact">
+                             Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu kontaktowym.<span class="text-orange">*</span>
                             <input 
                                 type="checkbox" 
                                 id="marketingContact" 
@@ -114,6 +146,11 @@
                                 formControlName="marketingContact">
                             <span class="checkbox-checkmark"></span>
                         </label>
+                        <div class="text-end mr-2">
+                            <small class="text-danger " style *ngIf="submitted && frm.marketingContact.errors?.required">
+                                Zgoda na przetwarzanie danych osobowych jest wymagana!
+                            </small>
+                        </div>
                         <label class="checkbox-container mb-4 text-muted" for="telephoneContact"> Wyrażam zgodę na kontakt telefoniczny w sprawach marketingowych.
                             <input 
                                 type="checkbox" 

@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { ValidationExp } from '../../core/helpers/constans';
+import { FormsValidators } from '../../core/helpers/forms-validators'
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss']
 })
+
 export class ContactFormComponent implements OnInit {
   contactForm!: FormGroup;
   submitted = false;
+  allMarked = false;
 
   constructor(private fb: FormBuilder) {
   }
@@ -19,15 +22,15 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      nip: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: [''],
-      messageSubject: ['', Validators.required],
-      drivingLicense: [false],
+      name: ['', [Validators.required]],
+      nip: ['', [FormsValidators.validateNip(), Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
+      phone: ['', Validators.pattern(ValidationExp.PhoneNoPattern)],
+      messageSubject: [null, Validators.required],
+      drivingLicense: [null],
       message: [''],
-      marketingContact: [, Validators.required],
-      telephoneContact: []
+      marketingContact: [null, Validators.required],
+      telephoneContact: [null]
     });
   }
 
@@ -35,8 +38,10 @@ export class ContactFormComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (!this.contactForm.valid || !this.frm.marketingContact.value) {
+      console.log('Formularz zawiera błędy, lub nie zostały wypełnione wszystkie wymagane pola!')
       return;
     } else {
+      console.log('Formularz został przesłany z następującymi danymi: ')
       console.log('Nazwa Firmy / Imię i nazwisko: ', this.frm.name.value);
       console.log('Numer NIP: ', this.frm.nip.value);
       console.log('E-mail: ', this.frm.email.value);
@@ -50,7 +55,8 @@ export class ContactFormComponent implements OnInit {
   }
 
   selectAll(): void {
-    this.frm.marketingContact.setValue(!this.frm.marketingContact.value);
-    this.frm.telephoneContact.setValue(!this.frm.telephoneContact.value);
+    this.allMarked = !this.allMarked;
+    this.frm.marketingContact.setValue(this.allMarked);
+    this.frm.telephoneContact.setValue(this.allMarked);
   }
 }

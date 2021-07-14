@@ -1,226 +1,249 @@
 $accent-color: #fb6603;
+$inactive-color: #d9d9d9;
 
-
+.card{
+    border-radius: 25px; 
+    border: none;
+}
 .form-group {
-  position: relative;
-  min-height: 85px;
-}
-  
-input.form-control {
-  height: 73px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: none;
-}
-  
-label.form-control-label {
-  position: absolute;
-  font-size: 12px;
-  font-weight: 700;
-  top: 10px;
-  left: 10px;
+    position: relative;
+    min-height: 85px;
+    .form-control:focus {
+        border: 3px solid $accent-color;
+        box-shadow: inset 0 1px 1px $accent-color, 0 0 1px $accent-color;
+    }
+    input.form-control {
+        height: 73px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: none;
+    }
+    label.form-control-label {
+        position: absolute;
+        font-size: 12px;
+        font-weight: 700;
+        top: 10px;
+        left: 10px;
+    }
+    input{
+        border-radius: 10px;
+    }
+    .bg-gray{
+        background-color: #f9f9f9;
+    }
+    .input-gradient{
+        background: rgb(249,249,249);
+        background: linear-gradient(0deg, rgba(249,249,249,1) 0%, rgba(233,233,233,1) 100%);
+    }
+    textarea{
+        padding-top:25px;
+        height: 150px;
+        border-radius: 10px;
+        text-decoration: none;
+        background-color: #f9f9f9;
+        border: none;
+        resize: none;
+        outline: none;
+    }
+    .drivingLicense{
+        width:100%;
+        height: 73px;
+        padding: 10px 0 0 10px;
+        background-color: #f9f9f9;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 10px;
+    }
+    .custom-select {
+        border: none;
+        height: 73px;
+        border-radius:10px;
+        font-size: 14px;
+        font-weight: 500;
+        background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #f9f9f9;
+        background-size: 2%;
+        -webkit-appearance: none;
+        background-position-x: 95%;
+    }
+    
 }
 
+.select::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
+  .select:after {
+    grid-area: select;
+  }
+  
 .submit-btn{
-  width:241px;
-  height: 60px;
-  border-radius: 30px;
-  border: 0px;
-  background-color: #40DE4E;
-  color: #ffffff;
-  font-size:15px;
+    width:241px;
+    height: 60px;
+    border-radius: 30px;
+    border: 0px;
+    background-color: #40DE4E;
+    color: #ffffff;
+    font-size:15px;
 }
 
-.form-control:focus {
-  border: 3px solid $accent-color;
-  // border-color: #fb6603;
-  box-shadow: inset 0 1px 1px $accent-color, 0 0 1px $accent-color;
+.text-muted{
+    color: $inactive-color;
 }
 
-.header{
-  background-image: src("../../../assets/logo.png");
-  // background-color: red;
-  width:200px;
-  height: 200px;
-}
-
-input{
-  border-radius: 10px;
-}
-
-.bg-gray{
-  background-color: #f9f9f9;
-  // background-color: #8b2929;
-}
-.input-gradient{
-  background: rgb(249,249,249);
-  background: linear-gradient(0deg, rgba(249,249,249,1) 0%, rgba(233,233,233,1) 100%);
-}
-
-.orange{
-  color: $accent-color;
-}
-textarea{
-  padding-top:25px;
-  height: 150px;
-  border-radius: 10px;
-  text-decoration: none;
-  background-color: #f9f9f9;
-  border: none;
-  resize: none;
-  outline: none;
-//   font-weight: 500;
-}
-
-.drivingLicense{
-  padding: 10px 0 0 10px;
-  background-color: #f9f9f9;
-  width:100%;
-  height: 73px;
-  font-size: 12px;
-  font-weight: 700;
-  border-radius: 10px;
-  // position: absolute;
-//     top: 10px;
-// left: 10px;
+.text-orange{
+    color: $accent-color;
 }
 
 h1{
-  font-size: 24px;
-  font-weight: 700;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 h2{
-  font-size: 16px;
-  color:#b3b3b4;
-}
-.radio-container{
-  display: block;
-  position: relative;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 12px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    font-size: 16px;
+    color:#b3b3b4;
 }
 
-/* Hide the browser's default radio button */
-.radio-container input{
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-  /* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: -2px;
-  left: -30px;
-  height: 24px;
-  width: 24px;
-  border: 3px solid $accent-color;
-  background-color: none;
-  border-radius: 50%;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-    
-.radio-container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.radio-container .checkmark:after {
-  top: 5px;
-  left: 5px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: $accent-color;
-}
-
-// CHECKBOX STYLES
+/* Custom Checkbox */
 /* The container */
 .checkbox-container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 12px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    &:hover input {
+        /* On mouse-over, change border color to orange */
+        ~ .checkbox-checkmark {
+            border-color: $accent-color;
+        }
+    }
+    input {
+        /* Hide the browser's default checkbox */
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        &:checked{
+            /* When the checkbox is checked, change color to orange */
+            ~ .checkbox-checkmark {
+                background-color: none;
+                color: $accent-color;
+                border-color: $accent-color;
+                &:after {
+                    display: block;
+                }
+            }
+        }
+    }
+    .checkbox-checkmark {
+        position: absolute;
+        top: -7px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: white;
+        border: 3px solid $inactive-color;
+        border-radius: 8px;
+        /* Style the checkmark/indicator */
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 4px;
+            width: 7px;
+            height: 10px;
+            border: solid $accent-color;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }       
 }
 
-/* Hide the browser's default checkbox */
-.checkbox-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+/* Custom radio button */
+.radio-container{
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: $inactive-color;
+    &:hover input{
+        ~ small{
+            color: $accent-color;
+        }
+        ~ .checkmark {
+            border-color: $accent-color;
+        }
+    }
+    input{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        &:checked {
+            ~ small{
+                color: $accent-color;
+            }
+            ~ .checkmark{
+                border-color: $accent-color;
+                &:after {
+                    display: block;
+                    color: $accent-color;
+                    border-color: $accent-color;
+                }
+            }
+        }
+    }
+    .checkmark{
+        position: absolute;
+        top: -2px;
+        left: -30px;
+        height: 24px;
+        width: 24px;
+        border: 3px solid $inactive-color;
+        background-color: none;
+        border-radius: 50%;
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            top: 5px;
+            left: 5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: $accent-color;
+        }
+    }
 }
 
-/* Create a custom checkbox */
-.checkbox-checkmark {
-  position: absolute;
-  top: -7px;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: white;
-  border: 3px solid $accent-color;
-  border-radius: 8px;
+.cust-span{
+    // margin:0;
+    // padding:0;
+    // margin-left:30px;
+    // padding-left:30px;
 }
 
-/* On mouse-over, add a grey background color */
-.checkbox-container:hover input ~ .checkbox-checkmark {
-  background-color: none;
-}
-
-/* When the checkbox is checked, add a blue background */
-.checkbox-container input:checked ~ .checkbox-checkmark {
-  background-color: none;
-  color: $accent-color;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkbox-checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkmark when checked */
-.checkbox-container input:checked ~ .checkbox-checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.checkbox-container .checkbox-checkmark:after {
-  left: 7px;
-  top: 4px;
-  width: 7px;
-  height: 10px;
-  border: solid $accent-color;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.custom-select {
-  border: none;
-  height: 73px;
-  padding-top: 20px;
-  font-size: 14px;
-  font-weight: 500;
+.cust-text{
+    // margin: 0;
+    // padding: 0;
+    // margin-left:30px;
+    // padding-left:30px;
 }
